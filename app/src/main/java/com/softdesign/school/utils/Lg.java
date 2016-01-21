@@ -4,7 +4,7 @@ import android.util.Log;
 
 public class Lg {
 
-    private static final String PREFIX = "HTC ";
+    private static final String PREFIX = "School ";
     public static final int LOGCAT_BUFFER_SIZE = 3000;
 
     private static boolean shouldLog() {
