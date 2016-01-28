@@ -13,88 +13,81 @@ public class Lg {
         return false;
     }
 
-    /** Send an INFO log message */
-    public static void i (String tag, String text){
-        if (shouldLog()) {
-            if (text.length() > LOGCAT_BUFFER_SIZE){
-                String s = text;
-                while (s.length() > LOGCAT_BUFFER_SIZE){
-                    String s1 = s.substring(0, LOGCAT_BUFFER_SIZE);
-                    s = s.substring(LOGCAT_BUFFER_SIZE);
-                    Log.i(PREFIX + tag, s1);
-                }
-                Log.i(PREFIX + tag, s);
-            } else {
-                Log.i(PREFIX + tag, text);
-            }
-        }
-    }
-
-    /** Send a DEBUG log message */
-    public static void d (String tag, String text){
-        if (shouldLog()) {
-            if (text.length() > LOGCAT_BUFFER_SIZE){
-                String s = text;
-                while (s.length() > LOGCAT_BUFFER_SIZE){
-                    String s1 = s.substring(0, LOGCAT_BUFFER_SIZE);
-                    s = s.substring(LOGCAT_BUFFER_SIZE);
-                    Log.d(PREFIX + tag, s1);
-                }
-                Log.d(PREFIX + tag, s);
-            } else {
-                Log.d(PREFIX + tag, text);
-            }
-        }
-    }
-
-    /** Send a ERROR log message and log the exception */
-    public static void e (String tag, String text) {
-        if (shouldLog()) {
-            if (text.length() > LOGCAT_BUFFER_SIZE){
-                String s = text;
-                while (s.length() > LOGCAT_BUFFER_SIZE){
-                    String s1 = s.substring(0, LOGCAT_BUFFER_SIZE);
-                    s = s.substring(LOGCAT_BUFFER_SIZE);
-                    Log.e(PREFIX + tag, s1);
-                }
-                Log.e(PREFIX + tag, s);
-            } else {
-                Log.e(PREFIX + tag, text);
-            }
-        }
-    }
-
-    /** Send a WARN log message and log the exception */
-    public static void w (String tag, String text) {
-        if (shouldLog()) {
-            if (text.length() > LOGCAT_BUFFER_SIZE){
-                String s = text;
-                while (s.length() > LOGCAT_BUFFER_SIZE){
-                    String s1 = s.substring(0, LOGCAT_BUFFER_SIZE);
-                    s = s.substring(LOGCAT_BUFFER_SIZE);
-                    Log.w(PREFIX + tag, s1);
-                }
-                Log.w(PREFIX + tag, s);
-            } else {
-                Log.w(PREFIX + tag, text);
-            }
-        }
-    }
-
-    /** Send a VERBOSE log message */
+    /** Получено сообщение уровня VERBOSE из внешнего класса, где:
+     * - tag - имя класса;
+     * - text - содержание. */
     public static void v (String tag, String text) {
+        helper(Log.VERBOSE, tag, text);
+    }
+
+    /** Получено сообщение уровня DEBUG из внешнего класса, где:
+     * - tag - имя класса;
+     * - text - содержание. */
+    public static void d (String tag, String text){
+        helper(Log.DEBUG, tag, text);
+    }
+
+    /** Получено сообщение уровня INFO из внешнего класса, где:
+     * - tag - имя класса;
+     * - text - содержание. */
+    public static void i (String tag, String text){
+        helper(Log.INFO, tag, text);
+    }
+
+    /** Получено сообщение уровня WARN из внешнего класса, где:
+     * - tag - имя класса;
+     * - text - содержание. */
+    public static void w (String tag, String text) {
+        helper(Log.WARN, tag, text);
+    }
+
+    /** Получено сообщение уровня ERROR из внешнего класса, где:
+     * - tag - имя класса;
+     * - text - содержание. */
+    public static void e (String tag, String text) {
+        helper(Log.ERROR, tag, text);
+    }
+
+    /** Обработка ошибки перед ее выводом, где:
+     * - level - уровень (Error);
+     * - source - класс источника;
+     * - msg - содержание.*/
+    private static void helper(Integer level, String source, String msg) {
         if (shouldLog()) {
+
+            String text = msg;
+            String tag = source;
+
             if (text.length() > LOGCAT_BUFFER_SIZE){
                 String s = text;
                 while (s.length() > LOGCAT_BUFFER_SIZE){
                     String s1 = s.substring(0, LOGCAT_BUFFER_SIZE);
                     s = s.substring(LOGCAT_BUFFER_SIZE);
-                    Log.v(PREFIX + tag, s1);
+                    logOut(level, PREFIX + tag, s1);
+//                    Log.i(PREFIX + tag, s1);
                 }
-                Log.v(PREFIX + tag, s);
+                logOut(level, PREFIX + tag, s);
+//                Log.i(PREFIX + tag, s);
             } else {
-                Log.v(PREFIX + tag, text);
+                logOut(level, PREFIX + tag, text);
+//                Log.i(PREFIX + tag, text);
             }
         }
     }
+
+    /** Вывод ошибки, где:
+     * - level - уровень (Error);
+     * - source - класс источника;
+     * - msg - содержание. */
+    private static void logOut (Integer level, String source, String msg) {
+        switch (level) {
+            case Log.VERBOSE: Log.v(PREFIX + source, msg);
+            case Log.DEBUG: Log.d(PREFIX + source, msg);
+            case Log.INFO: Log.i(PREFIX + source, msg);
+            case Log.WARN: Log.w(PREFIX + source, msg);
+            case Log.ERROR: Log.e(PREFIX + source, msg);
+        }
+    }
+
+
 }
