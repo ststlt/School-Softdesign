@@ -1,12 +1,17 @@
 package com.softdesign.school.ui.activities;
 
 import android.app.ActionBar;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.PersistableBundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,6 +29,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private CheckBox mCheckBox;
     private EditText mEditText;
     private EditText mEditText2;
+
+    private Button mBtnBlue;
+    private Button mBtnGreen;
+    private Button mBtnRed;
 
     private Toolbar mToolbar;
 
@@ -53,6 +62,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mEditText = (EditText) findViewById(R.id.editText);
         mEditText2 = (EditText) findViewById(R.id.editText2);
+
+        mBtnBlue = (Button) findViewById(R.id.btn_blue);
+        mBtnBlue.setOnClickListener(this);
+
+        mBtnGreen = (Button) findViewById(R.id.btn_green);
+        mBtnGreen.setOnClickListener(this);
+
+        mBtnRed = (Button) findViewById(R.id.btn_red);
+        mBtnRed.setOnClickListener(this);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -98,6 +116,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     mEditText2.setVisibility(View.VISIBLE);
                 }
+                break;
+            /* Обработка клика синей кнопки */
+            case R.id.btn_blue:
+//                mBtnBlue.setBackgroundColor(ContextCompat.getColor(this, R.color.toolbar_blue));
+                mToolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.toolbar_blue));
+                break;
+            case R.id.btn_green:
+//                mBtnGreen.setBackgroundColor(ContextCompat.getColor(this, R.color.toolbar_green));
+                mToolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.toolbar_green));
+                break;
+            case R.id.btn_red:
+//                mBtnRed.setBackgroundColor(ContextCompat.getColor(this, R.color.toolbar_red));
+                mToolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.toolbar_red));
                 break;
         }
     }
