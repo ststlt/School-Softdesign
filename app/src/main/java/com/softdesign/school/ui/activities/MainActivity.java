@@ -4,11 +4,13 @@ import android.app.ActionBar;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.Toolbar;
+
 
 import com.softdesign.school.R;
 import com.softdesign.school.utils.Lg;
@@ -22,7 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private CheckBox mCheckBox;
     private EditText mEditText;
     private EditText mEditText2;
-    Toolbar mToolbar;
+
+    private Toolbar mToolbar;
 
     /* Статическая переменная, в которой хранится состояние скрытого/видимого второго input (см. outState) */
     private static final String VISIBLE_KEY = "visible";
@@ -52,19 +55,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mEditText2 = (EditText) findViewById(R.id.editText2);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        setupToolbar();
     }
 
 
     /* Инициализация тулбара после танцев со стилями */
     private void setupToolbar () {
         setSupportActionBar(mToolbar);
-        ActionBar actionBar = getSupportActionBar();
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         /* Если экшнбар поддерживается, не нулл */
         if (actionBar != null) {
+            /* Чтобы появился сэндвич в тулбаре */
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_24dp);
             actionBar.setDisplayHomeAsUpEnabled(true);
+
         }
     }
 
+    /* Метод для оперирования с items в опциях меню тулбара */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            Toast.makeText(this, "Menu click", Toast.LENGTH_SHORT).show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     /* Alt+Ins -> Implements Methods -> onClick(View v) */
     @Override
