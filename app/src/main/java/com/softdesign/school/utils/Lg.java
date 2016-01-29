@@ -4,13 +4,13 @@ import android.util.Log;
 
 public class Lg {
 
-    private static final String PREFIX = "School ";
+    private static final String PREFIX = "SCHOOL ";
     public static final int LOGCAT_BUFFER_SIZE = 3000;
 
     private static boolean shouldLog() {
 //        return BuildConfig.IS_LOGCAT_LOGGER_ENABLED; // TODO вкл/выкл режим логгирования из конфига
-//        return true;
-        return false;
+        return true;
+//        return false;
     }
 
     /** Получено сообщение уровня VERBOSE из внешнего класса, где:
@@ -55,8 +55,8 @@ public class Lg {
     private static void helper(Integer level, String source, String msg) {
         if (shouldLog()) {
 
-            String text = msg;
             String tag = source;
+            String text = msg;
 
             if (text.length() > LOGCAT_BUFFER_SIZE){
                 String s = text;
@@ -81,11 +81,21 @@ public class Lg {
      * - msg - содержание. */
     private static void logOut (Integer level, String source, String msg) {
         switch (level) {
-            case Log.VERBOSE: Log.v(PREFIX + source, msg);
-            case Log.DEBUG: Log.d(PREFIX + source, msg);
-            case Log.INFO: Log.i(PREFIX + source, msg);
-            case Log.WARN: Log.w(PREFIX + source, msg);
-            case Log.ERROR: Log.e(PREFIX + source, msg);
+            case Log.VERBOSE:
+                Log.v(PREFIX + source, msg);
+                break;
+            case Log.DEBUG:
+                Log.d(PREFIX + source, msg);
+                break;
+            case Log.INFO:
+                Log.i(PREFIX + source, msg);
+                break;
+            case Log.WARN:
+                Log.w(PREFIX + source, msg);
+                break;
+            case Log.ERROR:
+                Log.e(PREFIX + source, msg);
+                break;
         }
     }
 
