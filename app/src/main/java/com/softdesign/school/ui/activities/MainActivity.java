@@ -35,9 +35,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mBtnRed;
 
     private Toolbar mToolbar;
+    private Integer mToolbarColor = R.color.colorPrimary;
+    private Integer mStatusColor = R.color.colorPrimaryDark;
 
     /* Статическая переменная, в которой хранится состояние скрытого/видимого второго input (см. outState) */
     private static final String VISIBLE_KEY = "visible";
+    private static final String TOOLBAR_COLOR_KEY = "toolbar";
+    private static final String STATUSBAR_COLOR_KEY = "statusbar";
 
 
     /* Bundle - это переменная окружения, хранящая ключ-занчение (для сохранения состояния view-элементов активити при повороте экрана и других действий)
@@ -121,14 +125,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_blue:
 //                mBtnBlue.setBackgroundColor(ContextCompat.getColor(this, R.color.toolbar_blue));
                 mToolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.toolbar_blue));
+                mToolbarColor = R.color.toolbar_blue;
+                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.statusbar_darkblue));
+                mStatusColor = R.color.statusbar_darkblue;
                 break;
             case R.id.btn_green:
 //                mBtnGreen.setBackgroundColor(ContextCompat.getColor(this, R.color.toolbar_green));
                 mToolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.toolbar_green));
+                mToolbarColor = R.color.toolbar_green;
+                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.statusbar_darkgreen));
+                mStatusColor = R.color.statusbar_darkgreen;
                 break;
             case R.id.btn_red:
 //                mBtnRed.setBackgroundColor(ContextCompat.getColor(this, R.color.toolbar_red));
                 mToolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.toolbar_red));
+                mToolbarColor = R.color.toolbar_red;
+                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.statusbar_darkred));
+                mStatusColor = R.color.statusbar_darkred;
                 break;
         }
     }
@@ -176,6 +189,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Lg.e(this.getLocalClassName(), "on Save Instance State");
         /* Сохранение в Bundle текущего состояния */
         outState.putBoolean(VISIBLE_KEY, mEditText2.getVisibility() == View.VISIBLE);
+        outState.putInt(TOOLBAR_COLOR_KEY, mToolbarColor);
+        outState.putInt(STATUSBAR_COLOR_KEY, mStatusColor);
     }
 
     /* За счет этого метода происходит восстановление значений из Bundle для view-элементов, не имеющих идентификатор */
@@ -184,7 +199,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onRestoreInstanceState(savedInstanceState);
         /* Получение из Bundle бывшего состояния */
         int visibleState = savedInstanceState.getBoolean(VISIBLE_KEY) ? View.VISIBLE : View.INVISIBLE;
+
         /* Задаем второму input полученное состояние из Bundle */
         mEditText2.setVisibility(visibleState);
+        mToolbar.setBackgroundColor(ContextCompat.getColor(this, savedInstanceState.getInt(TOOLBAR_COLOR_KEY)));
+        mToolbarColor = savedInstanceState.getInt(TOOLBAR_COLOR_KEY);
+
+        getWindow().setStatusBarColor(savedInstanceState.getInt(STATUSBAR_COLOR_KEY));
+        mStatusColor = savedInstanceState.getInt(STATUSBAR_COLOR_KEY);
     }
 }
