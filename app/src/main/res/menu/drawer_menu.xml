@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/drawer_profile"
+        android:checked="true"
+        android:title="@string/drawer.profile"
+        android:icon="@drawable/ic_account_box_24dp"/>
+    <item
+        android:id="@+id/drawer_contacts"
+        android:title="@string/drawer.contacts"/>
+    <item
+        android:id="@+id/drawer_team"
+        android:title="@string/drawer.team"/>
+    <item
+        android:id="@+id/drawer_tascs"
+        android:title="@string/drawer.tasks"/>
+    <item
+        android:id="@+id/drawer_settings"
+        android:title="@string/drawer.settings"/>
+
+</menu>

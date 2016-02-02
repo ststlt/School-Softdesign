@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">School</string>
+
+    <string name="text_on_top">New Text</string>
+
+    <!--Strings for Navigation menu-->
+    <string name="drawer.profile">Профиль</string>
+    <string name="drawer.contacts">Контакты</string>
+    <string name="drawer.tasks">Задачи</string>
+    <string name="drawer.team">Команда</string>
+    <string name="drawer.settings">Настройки</string>
+    <string name="fragment.contacts.description">Здесь будут контакты</string>
+    <string name="fragment.profile.description">Здесь будет профиль</string>
+
 </resources>
