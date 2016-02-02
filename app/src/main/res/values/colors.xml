@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--Основные цвета-->
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--Цвет сэндвича в тулбаре-->
+    <color name="icon_color">#FFFFFF</color>
+
+    <!--Цвета Statusbar-->
+    <color name="statusbar_darkblue">#02B1CC</color>
+    <color name="statusbar_darkgreen">#4CCC02</color>
+    <color name="statusbar_darkred">#CC1D02</color>
+
+    <!--Цвета Toolbar-->
+    <color name="toolbar_blue">#47C9F5</color>
+    <color name="toolbar_green">#87F547</color>
+    <color name="toolbar_red">#F55E47</color>
+
 </resources>
