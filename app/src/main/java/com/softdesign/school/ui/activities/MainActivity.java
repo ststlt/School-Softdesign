@@ -1,9 +1,15 @@
 package com.softdesign.school.ui.activities;
 
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.BitmapCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -16,17 +22,25 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
 import com.softdesign.school.R;
 import com.softdesign.school.ui.fragments.ContactsFragment;
 import com.softdesign.school.ui.fragments.ProfileFragment;
+import com.softdesign.school.ui.fragments.SettingsFragment;
+import com.softdesign.school.ui.fragments.TasksFragment;
+import com.softdesign.school.ui.fragments.TeamFragment;
+import com.softdesign.school.utils.ImageHelper;
 import com.softdesign.school.utils.Lg;
+
+
 
 /* Имплементация слушателя события Click по элементу View */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public static final int INT = 25;
     /**
      * Объявление view-элемента для дальнейшего обращения к нему
      */
@@ -53,6 +67,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String VISIBLE_KEY = "visible";
     private static final String TOOLBAR_COLOR_KEY = "toolbar";
     private static final String STATUSBAR_COLOR_KEY = "statusbar";
+
+    private ImageView iv;
+    private Bitmap avaBit;
+    private Drawable avaDraw;
 
 
     /* Bundle - это переменная окружения, хранящая ключ-занчение (для сохранения состояния view-элементов активити при повороте экрана и других действий)
@@ -107,8 +125,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } else { // в первый раз, значит нужно загрузить первый фрагмент
             getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_container, new ProfileFragment()).commit(); // из activity_main.xml
+            mNavigationView.getMenu().findItem(R.id.drawer_profile).setCheckable(true);
+            mNavigationView.setCheckedItem(R.id.drawer_profile);
         }
+
+//        AVA
+        /*iv = (ImageView) findViewById(R.id.imageView);
+//        avaDraw = Drawable.createFromPath("s6578.jpg");
+//        avaBit = BitmapFactory.decodeResource(getResources(), R.drawable.s6578);
+*//*        avaBit = BitmapFactory.decodeFile("s6578.jpg");
+        avaDraw = new BitmapDrawable(getResources(), avaBit);
+//        Bitmap ava = ImageHelper.getRoundedCornerBitmap(avaBit, 25);
+        iv.setImageDrawable(avaDraw);*//*
+        iv.setImageResource(R.drawable.s6578);*/
+
     }
+
 
     /* Инициализация меню навигации */
     private void setupDrawer() {
@@ -119,18 +151,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 switch (item.getItemId()) {
                     case R.id.drawer_profile:
                         mFragment = new ProfileFragment();
-                        mNavigationView.getMenu().findItem(R.id.drawer_profile).setChecked(true);
-                        Toast.makeText(MainActivity.this, item.getTitle().toString(), Toast.LENGTH_SHORT).show();
+                        mNavigationView.getMenu().findItem(R.id.drawer_profile).setCheckable(true);
+                        mNavigationView.setCheckedItem(R.id.drawer_profile);
+//                        Toast.makeText(MainActivity.this, item.getTitle().toString(), Toast.LENGTH_SHORT).show();
+
                         break;
                     case R.id.drawer_contacts:
                         mFragment = new ContactsFragment();
-                        mNavigationView.getMenu().findItem(R.id.drawer_contacts).setChecked(true);
-                        Toast.makeText(MainActivity.this, item.getTitle().toString(), Toast.LENGTH_SHORT).show();
+                        mNavigationView.getMenu().findItem(R.id.drawer_contacts).setCheckable(true);
+                        mNavigationView.setCheckedItem(R.id.drawer_contacts);
+//                        Toast.makeText(MainActivity.this, item.getTitle().toString(), Toast.LENGTH_SHORT).show();
+
+                        break;
+                    case R.id.drawer_team:
+                        mFragment = new TeamFragment();
+                        mNavigationView.getMenu().findItem(R.id.drawer_team).setCheckable(true);
+                        mNavigationView.setCheckedItem(R.id.drawer_team);
+//                        Toast.makeText(MainActivity.this, item.getTitle().toString(), Toast.LENGTH_SHORT).show();
+
+                        break;
+                    case R.id.drawer_tascs:
+                        mFragment = new TasksFragment();
+                        mNavigationView.getMenu().findItem(R.id.drawer_tascs).setCheckable(true);
+                        mNavigationView.setCheckedItem(R.id.drawer_tascs);
+//                        Toast.makeText(MainActivity.this, item.getTitle().toString(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.drawer_settings:
+                        mFragment = new SettingsFragment();
+                        mNavigationView.getMenu().findItem(R.id.drawer_settings).setCheckable(true);
+                        mNavigationView.setCheckedItem(R.id.drawer_settings);
+//                        Toast.makeText(MainActivity.this, item.getTitle().toString(), Toast.LENGTH_SHORT).show();
                         break;
                 }
 
                 if (mFragment != null) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_container, mFragment).addToBackStack(null).commit(); // из activity_main.xml
+//                    Lg.e("TAG", String.valueOf(item.getItemId()));
+//                    Lg.e("TAG", String.valueOf(item.getMenuInfo()));
+
                 }
 
                 mNavigationDrawer.closeDrawers();
@@ -140,6 +198,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() == 0){
+            finish();
+            System.exit(0);
+        }
+        else if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+//            Lg.e(this.getLocalClassName(), String.valueOf(getSupportFragmentManager().getBackStackEntryCount()));
+
+            getSupportFragmentManager().popBackStackImmediate();
+//            Lg.e(this.getLocalClassName(), String.valueOf(getTitle()));
+            switch (String.valueOf(getTitle())) {
+                case "Профиль":
+                    mNavigationView.getMenu().findItem(R.id.drawer_profile).setCheckable(true);
+                    mNavigationView.setCheckedItem(R.id.drawer_profile);
+                    break;
+                case "Контакты":
+                    mNavigationView.getMenu().findItem(R.id.drawer_contacts).setCheckable(true);
+                    mNavigationView.setCheckedItem(R.id.drawer_contacts);
+                    break;
+                case "Команда":
+                    mNavigationView.getMenu().findItem(R.id.drawer_team).setCheckable(true);
+                    mNavigationView.setCheckedItem(R.id.drawer_team);
+                    break;
+                case "Задачи":
+                    mNavigationView.getMenu().findItem(R.id.drawer_tascs).setCheckable(true);
+                    mNavigationView.setCheckedItem(R.id.drawer_tascs);
+                    break;
+                case "Настройки":
+                    mNavigationView.getMenu().findItem(R.id.drawer_settings).setCheckable(true);
+                    mNavigationView.setCheckedItem(R.id.drawer_settings);
+                    break;
+
+
+            }
+//            Toast.makeText(this, getSupportFragmentManager().getBackStackEntryCount(), Toast.LENGTH_SHORT).show();
+        }
+        else {
+            super.onBackPressed();
+        }
+    }
 
     /* Инициализация тулбара после танцев со стилями */
     private void setupToolbar() {
@@ -203,12 +302,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onStart() {
         super.onStart();
         Lg.e(this.getLocalClassName(), "on start");
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         Lg.e(this.getLocalClassName(), "on resume");
+
     }
 
     @Override
