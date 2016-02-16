@@ -19,4 +19,7 @@
     <color name="toolbar_red">#F55E47</color>
     <color name="white">#ffffff</color>
 
+    <color name="black">#000000</color>
+    <color name="gray">#c8c8c8</color>
+
 </resources>
