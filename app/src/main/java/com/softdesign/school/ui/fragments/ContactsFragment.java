@@ -31,16 +31,13 @@ public class ContactsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         /* Надуваем из xml лэйаута view элемент */
-//        View convertView = inflater.inflate(R.layout.fragment_contacts, null, false);
-        View convertView = inflater.inflate(R.layout.fragment_contacts, null);
+        View convertView = inflater.inflate(R.layout.fragment_contacts, null, false);
 
         /* Задаем в тулбаре выбранное в меню навигации наименование */
         getActivity().setTitle(getResources().getString(R.string.drawer_contacts));
 
         ( (MainActivity) getActivity() ).lockAppBar(true);
 
-
-//        generateData();
         generateData();
         mRecyclerView = (RecyclerView) convertView.findViewById(R.id.recycle_view);
 
@@ -51,7 +48,6 @@ public class ContactsFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
 
         return convertView;
-//        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
