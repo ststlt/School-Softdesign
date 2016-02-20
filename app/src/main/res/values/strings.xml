@@ -26,6 +26,12 @@
     <string name="fragment.profile.description">Здесь будет профиль</string>
     <string name="fragment.profile.phone.number">8 (917) 111-11-11</string>
     <string name="fragment.profile.phone.label.mobile">Мобильный</string>
+    <string name="fragment.profile.email.name">shevtsov_stas@rambler.ru</string>
+    <string name="fragment.profile.phone.label.email">E-mail</string>
+    <string name="fragment.profile.vk.url">http://vk.com/id2501177</string>
+    <string name="fragment.profile.phone.label.vk">vk.com</string>
+    <string name="fragment.profile.github.url">https://github.com/ststlt</string>
+    <string name="fragment.profile.phone.label.github">github.com</string>
     <string name="fragment.profile.title">Шевцов Станислав</string>
 
     <string name="fragment.team.description">Здесь будет команда</string>
@@ -36,5 +42,6 @@
 
     <string name="profile.text.lorem">Давно выяснено, что программировать под Android - просто.</string>
     <string name="profile.email">shevtsov_stas@rambler.ru</string>
+    <string name="title_activity_recyclerview">RecyclerviewActivity</string>
 
 </resources>
