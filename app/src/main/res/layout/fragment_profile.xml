@@ -53,6 +53,12 @@
 
     </RelativeLayout>
 
+    <View
+        android:layout_width="291dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/spacing_large"
+        android:background="@android:color/darker_gray"/>
+
     <RelativeLayout
         style="@style/list_item"
         android:layout_marginTop="@dimen/spacing_small">
@@ -100,6 +106,12 @@
 
     </RelativeLayout>
 
+    <View
+        android:layout_width="291dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/spacing_large"
+        android:background="@android:color/darker_gray"/>
+
     <RelativeLayout
         style="@style/list_item"
         android:layout_marginTop="@dimen/spacing_small">
@@ -146,6 +158,12 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <View
+        android:layout_width="291dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/spacing_large"
+        android:background="@android:color/darker_gray"/>
 
     <RelativeLayout
         style="@style/list_item"
