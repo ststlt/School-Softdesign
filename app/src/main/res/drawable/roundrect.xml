@@ -5,8 +5,8 @@
     <corners android:radius="@dimen/ava_corner"/>
 
     <gradient
-        android:startColor="@color/toolbar_green"
-        android:endColor="@color/toolbar_green"
+        android:startColor="@color/toolbar_blue"
+        android:endColor="@color/toolbar_blue"
         android:angle="45"/>
     <padding android:left="8dp"
         android:top="8dp"

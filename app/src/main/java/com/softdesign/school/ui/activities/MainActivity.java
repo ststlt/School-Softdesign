@@ -6,11 +6,14 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.BitmapCompat;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -63,6 +66,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Fragment mFragment;
     private FrameLayout mFrameContainer;
 
+    public AppBarLayout mAppBar;
+    private CollapsingToolbarLayout mCollapsingToolbar;
+    private View mHeaderLayout;
+
+    AppBarLayout.LayoutParams params = null;
+
     /* Статическая переменная, в которой хранится состояние скрытого/видимого второго input (см. outState) */
     private static final String VISIBLE_KEY = "visible";
     private static final String TOOLBAR_COLOR_KEY = "toolbar";
@@ -84,28 +93,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         /* Задаем свой заголовок в ActionBar |
         ToolBar - это тот же ActionBar, но представленный в виде view-элемента в xml
         (см. res/values/styles.xml - необходимо наследоваться от Theme.AppCompat.Light.NoActionBar (текущая тема Theme.AppCompat.Light.DarkActionBar)) */
-        setTitle("Lesson 3");
+        setTitle("Lesson 4");
 
         Lg.e(this.getLocalClassName(), "on create"); /* Сообщение в логгер о создании главного активити */
 
-        /* Используется в уроке #2 */
-        /* Создание экземпляра объекта Checkbox для дальнейшей работы с ним | Приведение типов обязательно | Поиск по идентификатору в классе R */
-//        mCheckBox = (CheckBox) findViewById(R.id.checkBox);
-        /* Вешаем обработчик клика на созданный экземпляр чекбокса предварительно имплементировав листнер View.OnClickListener и создав метод onClick */
-//        mCheckBox.setOnClickListener(this);
-
-//        mEditText = (EditText) findViewById(R.id.editText);
-//        mEditText2 = (EditText) findViewById(R.id.editText2);
-
-//        mBtnBlue = (Button) findViewById(R.id.btn_blue);
-//        mBtnBlue.setOnClickListener(this);
-
-//        mBtnGreen = (Button) findViewById(R.id.btn_green);
-//        mBtnGreen.setOnClickListener(this);
-
-//        mBtnRed = (Button) findViewById(R.id.btn_red);
-//        mBtnRed.setOnClickListener(this);
-        /* Используется в уроке #2 */
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -115,7 +106,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mNavigationDrawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
 
-        setupToolbar();
+        mCollapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        mAppBar = (AppBarLayout) findViewById(R.id.appbar_layout);
+
+        setupToolbar(); // 15.02.16
         setupDrawer();
 
         /* Проверка, запускается активити в первый раз или нет */
@@ -129,15 +123,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mNavigationView.setCheckedItem(R.id.drawer_profile);
         }
 
-//        AVA
-        /*iv = (ImageView) findViewById(R.id.imageView);
-//        avaDraw = Drawable.createFromPath("s6578.jpg");
-//        avaBit = BitmapFactory.decodeResource(getResources(), R.drawable.s6578);
-*//*        avaBit = BitmapFactory.decodeFile("s6578.jpg");
-        avaDraw = new BitmapDrawable(getResources(), avaBit);
-//        Bitmap ava = ImageHelper.getRoundedCornerBitmap(avaBit, 25);
-        iv.setImageDrawable(avaDraw);*//*
-        iv.setImageResource(R.drawable.s6578);*/
 
     }
 
@@ -196,6 +181,63 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
         });
+    }
+
+    public void lockAppBar(boolean collapse) {
+
+        // Получаем параметры АппБара для Коллапсинга
+        params = (AppBarLayout.LayoutParams) mCollapsingToolbar.getLayoutParams();
+
+        if (collapse) {
+
+            // рограммно сворачивается АппБар
+            mAppBar.setExpanded(false);
+
+            // Здесь обрабатывается изменение высоты АппБара
+            AppBarLayout.OnOffsetChangedListener mListener = new AppBarLayout.OnOffsetChangedListener() {
+
+                // На вход обработчика подается АппБар и вертикальное смещение
+                @Override
+                public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                    // Сравнение высот Тулбара+вертикальное_смещение и Минимальная_высота_Тулбара+высота_СтатусБара (расчет в пикселях!)
+                    if (mCollapsingToolbar.getHeight() + verticalOffset <= ViewCompat.getMinimumHeight(mCollapsingToolbar) + getStatusBarHeight()) {
+                        // Сворачивается АппБар и не реагирует на swipeDown
+                        params.setScrollFlags(0);
+                        mCollapsingToolbar.setLayoutParams(params);
+                        // Отвязывается слушатель после манипуляций выше
+                        mAppBar.removeOnOffsetChangedListener(this);
+                    }
+                }
+            };
+            mAppBar.addOnOffsetChangedListener(mListener);
+            /*AppBarLayout.OnOffsetChangedListener mListener = new AppBarLayout.OnOffsetChangedListener() {
+                @Override
+                public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                    if (mCollapsingToolbar.getHeight() + verticalOffset <= ViewCompat.getMinimumHeight(mCollapsingToolbar) + getStatusBarHeight()) {
+                        params.setScrollFlags(0);
+                        mCollapsingToolbar.setLayoutParams(params);
+                        mAppBar.removeOnOffsetChangedListener(this);
+                    }
+                }
+            };*/
+
+            // Снимаем все атрибуты, которые связаны со скроллингом
+            /*params.setScrollFlags(0);
+            mCollapsingToolbar.setLayoutParams(params);*/
+        } else {
+            mAppBar.setExpanded(true);
+            params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL | AppBarLayout.LayoutParams.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED | AppBarLayout.LayoutParams.SCROLL_FLAG_SNAP);
+            mCollapsingToolbar.setLayoutParams(params);
+        }
+    }
+
+    public int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+                if (resourceId > 0) {
+                    result = getResources().getDimensionPixelSize(resourceId);
+                }
+        return result;
     }
 
     @Override

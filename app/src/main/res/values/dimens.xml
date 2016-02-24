@@ -11,9 +11,31 @@
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
+    <!--Sizes-->
+    <dimen name="size_medium">56dp</dimen>
+    <dimen name="size_small">24dp</dimen>
+
     <!--Spacing-->
+    <dimen name="spacing_small">8dp</dimen>
     <dimen name="spacing_normal">16dp</dimen>
+    <dimen name="spacing_large">72dp</dimen>
+
+    <dimen name="toolbar_collapsing_image">256dp</dimen>
 
     <dimen name="ava_corner">8dp</dimen>
+
+    <!--Height-->
+    <dimen name="list_item">72dp</dimen>
+    <dimen name="icon_size">24dp</dimen>
+
+    <!--Touch-->
+    <dimen name="touch_size">44dp</dimen>
+
+    <!--Fonts-->
+    <dimen name="font_larger">20sp</dimen>
+    <dimen name="font_large">16sp</dimen>
+    <dimen name="font_normal">14sp</dimen>
+    <dimen name="font_small">12sp</dimen>
+    <dimen name="size_image">40dp</dimen>
 
 </resources>
