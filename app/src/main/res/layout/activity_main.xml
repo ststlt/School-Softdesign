@@ -21,7 +21,7 @@
         	            android:layout_height="wrap_content"
         	            android:fitsSystemWindows="true">
 
-        	            <android.support.design.widget.CollapsingToolbarLayout
+        	    <android.support.design.widget.CollapsingToolbarLayout
                             android:id="@+id/collapsing_toolbar"
         	                app:titleEnabled="false"
         	                android:layout_width="match_parent"
@@ -87,8 +87,8 @@
                                 />
 
 
-    	            </android.support.design.widget.CollapsingToolbarLayout>
-    	        </android.support.design.widget.AppBarLayout>
+    	         </android.support.design.widget.CollapsingToolbarLayout>
+    	</android.support.design.widget.AppBarLayout>
 
         <!--Вместо статики начинаем использовать фрагменты-->
         <!--<include layout="@layout/main_content"/>-->
@@ -107,7 +107,10 @@
             android:id="@+id/main_frame_container"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"></android.support.v4.widget.NestedScrollView>
+            android:layout_gravity="fill_vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        </android.support.v4.widget.NestedScrollView>
 
 
         <android.support.design.widget.FloatingActionButton

@@ -18,6 +18,15 @@ public class User {
         this.mImage = mImage;
     }
 
+    public User(String mFirstName, String mLastName, Drawable mImage, String mVkLink, String mGitLink, int mRait) {
+        this.mFirstName = mFirstName;
+        this.mLastName = mLastName;
+        this.mRate = mRait;
+        this.mImage = mImage;
+        this.mVkLink = mVkLink;
+        this.mGitLink = mGitLink;
+    }
+
     public String getmFirstName() {
         return this.mFirstName;
     }
@@ -44,5 +53,34 @@ public class User {
 
     public int getmHomeTask() {
         return this.mHomeTask;
+    }
+
+    public void setmFirstName(String mFirstName) {
+        this.mFirstName = mFirstName;
+    }
+
+    public void setmLastName(String mLastName) {
+        this.mLastName = mLastName;
+    }
+
+    public void setmRait(int mRait) {
+        this.mRate = mRait;
+    }
+
+
+    public void setmImage(Drawable mImage) {
+        this.mImage = mImage;
+    }
+
+    public void setmVkLink(String mVkLink) {
+        this.mVkLink = mVkLink;
+    }
+
+    public void setmGitLink(String mGitLink) {
+        this.mGitLink = mGitLink;
+    }
+
+    public void saveUserData(String phone, String email, String vk, String git, String bio){
+
     }
 }
