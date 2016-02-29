@@ -43,5 +43,9 @@
     <string name="profile.text.lorem">Давно выяснено, что программировать под Android - просто.</string>
     <string name="profile.email">shevtsov_stas@rambler.ru</string>
     <string name="title_activity_recyclerview">RecyclerviewActivity</string>
+    <string name="title_activity_active_android">ActiveAndroidActivity</string>
+    <string name="red_team">Красная команда</string>
+    <string name="blue_team">Синяя команда</string>
+    <string name="green_team">Зеленая команда</string>
 
 </resources>

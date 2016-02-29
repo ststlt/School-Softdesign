@@ -3,23 +3,45 @@
     package="com.softdesign.school">
 
     <application
-        android:name=".utils.SchoolApplication"
+        android:name=".ui.activities.ActiveAndroidApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activities.MainActivity">
+        <!--android:name=".utils.SchoolApplication"-->
+
+        <!--<activity android:name=".ui.activities.MainActivity">-->
+        <activity android:name=".ui.activities.ActiveAndroidActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
+        <!--<activity
             android:name=".ui.activities.RecyclerviewActivity"
             android:label="@string/title_activity_recyclerview"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />-->
+
+        <!-- Для ORM ActiveAndroid -->
+        <!--Инициализация базы данных-->
+        <meta-data
+            android:name="AA_DB_NAME"
+            android:value="School.db" />
+        <!--Инициализация Версии базы данных-->
+        <meta-data
+            android:name="AA_DB_VERSION"
+            android:value="1" />
+        <!--Инициализация Моделей(таблиц) базы данных-->
+        <meta-data
+            android:name="AA_MODELS"
+            android:value="com.softdesign.school.data.storage.models.UserActive"/>
+
+        <!--<activity
+            android:name=".ui.activities.ActiveAndroidActivity"
+            android:label="@string/title_activity_active_android"
+            android:theme="@style/AppTheme"></activity>-->
     </application>
 
 </manifest>
