@@ -41,7 +41,7 @@
 
     </LinearLayout>
 
-    <RadioGroup
+    <!--<RadioGroup
         android:id="@+id/radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -65,6 +65,10 @@
             android:layout_height="wrap_content"
             android:text="@string/green_team"/>
 
-    </RadioGroup>
+    </RadioGroup>-->
+    <Spinner
+    android:id="@+id/dialog_user_team"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"></Spinner>
 
 </LinearLayout>

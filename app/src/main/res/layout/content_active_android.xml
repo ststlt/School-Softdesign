@@ -13,18 +13,57 @@
     tools:showIn="@layout/activity_active_android">
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/relativeLayout">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/button_add_team"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="+1 команда"
+            android:gravity="left"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            android:textAlignment="center"
+            android:paddingTop="@dimen/spacing_normal"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/button_add_user"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="+1 участник"
+            android:gravity="left"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="@dimen/spacing_normal"
+            android:textAlignment="center"
+            android:paddingTop="@dimen/spacing_normal"/>
+    </RelativeLayout>
+
     <!-- Создаем список RecyclerView -->
-    <!--<android.support.v7.widget.RecyclerView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/recycle_view"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:minHeight="500dp"/>-->
+        android:minHeight="200dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:longClickable="false"
+        android:layout_below="@+id/relativeLayout" />
 
-    <ListView
+
+
+    <!--<ListView
         android:id="@+id/user_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </ListView>
+    </ListView>-->
 
 </RelativeLayout>

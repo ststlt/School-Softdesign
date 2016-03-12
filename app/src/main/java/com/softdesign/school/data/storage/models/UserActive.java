@@ -3,8 +3,11 @@ package com.softdesign.school.data.storage.models;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.activeandroid.query.Select;
 
-@Table(name = "Users")
+import java.util.List;
+
+@Table(name = "UserActive")
 public class UserActive extends Model {
 
     @Column(name = "firstName")
@@ -49,4 +52,7 @@ public class UserActive extends Model {
     public void setTeam(String team) {
         this.team = team;
     }
+
+    /** запрос в БД, врзвращающий всех пользователей в виде List*/
+    public static List<UserActive> getAllUsers() {return new Select().from(UserActive.class).execute();}
 }

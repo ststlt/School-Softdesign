@@ -11,11 +11,12 @@ import android.widget.TextView;
 
 import com.softdesign.school.R;
 import com.softdesign.school.data.storage.models.UserActive;
+import com.softdesign.school.ui.activities.ActiveAndroidActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecycleUserActiveAdapter extends BaseAdapter {
+/*public class RecycleUserActiveAdapter extends BaseAdapter {
 
     private final Context mContext;
     private List<UserActive> mUsers;
@@ -58,18 +59,17 @@ public class RecycleUserActiveAdapter extends BaseAdapter {
         return rowView;
     }
 
-}
+}*/
 
-/*
 public class RecycleUserActiveAdapter extends RecyclerView.Adapter<UserActiveViewHolder> {
 
     ArrayList<UserActive> users;
 
-    public RecycleUserActiveAdapter(ArrayList<UserActive> users) { this.users = users; }
+    public RecycleUserActiveAdapter(ArrayList<UserActive> users, ActiveAndroidActivity activeAndroidActivity) { this.users = users; }
 
     @Override
     public UserActiveViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user_card, parent, false);
+        View convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user_card_active, parent, false);
         return new UserActiveViewHolder(convertView);
     }
 
@@ -77,6 +77,7 @@ public class RecycleUserActiveAdapter extends RecyclerView.Adapter<UserActiveVie
     public void onBindViewHolder(UserActiveViewHolder holder, int position) {
         UserActive user = users.get(position);
         holder.fullName.setText(user.getFirstName() + " " + user.getLastName());
+        holder.teamName.setText(user.getTeam());
 //        holder.avatar.setImageDrawable(user.getImage());
     }
 
@@ -84,4 +85,4 @@ public class RecycleUserActiveAdapter extends RecyclerView.Adapter<UserActiveVie
     public int getItemCount() {
         return users.size();
     }
-}*/
+}

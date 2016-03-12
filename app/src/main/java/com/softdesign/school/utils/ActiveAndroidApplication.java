@@ -1,4 +1,4 @@
-package com.softdesign.school.ui.activities;
+package com.softdesign.school.utils;
 
 
 import com.activeandroid.ActiveAndroid;

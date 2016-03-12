@@ -47,5 +47,6 @@
     <string name="red_team">Красная команда</string>
     <string name="blue_team">Синяя команда</string>
     <string name="green_team">Зеленая команда</string>
+    <string name="dialog.team">Имя команды</string>
 
 </resources>
